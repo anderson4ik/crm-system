@@ -1,0 +1,43 @@
+<div class="page-title">
+  <h4>Categories</h4>
+  <button
+    class="waves-effect waves-light btn grey darken-1"
+    routerLink="/categories/new"
+  >
+    Add Category
+  </button>
+</div>
+
+<!--loader-->
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+<!--Categories not found!-->
+<ng-template #empty>
+  <div class="center">
+    <h5>Categories not found!</h5>
+  </div>
+</ng-template>
+
+<!-- subscribing to stream (categories$) using async pipe-->
+<!-- if we get data as save it in variable categories (allowed only in template)-->
+<!--else show "loader"-->
+<div
+  class="row"
+  *ngIf="categories$ | async as categories; else loader"
+>
+  <div class="col s12">
+    <div class="collection" *ngIf="categories.length !== 0; else empty">
+<!--      creating routerLink from multiple parts of array-->
+      <a
+        [routerLink]="['/categories', category._id]"
+        class="collection-item"
+        *ngFor="let category of categories"
+      >
+        {{category.name}}
+      </a>
+    </div>
+  </div>
+</div>
+

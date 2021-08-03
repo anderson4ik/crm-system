@@ -1,0 +1,57 @@
+<div class="page-title">
+  <h4>History of Orders</h4>
+  <button
+    (click)="isFilterVisible = !isFilterVisible"
+    class="btn btn-small"
+    [ngClass]="{
+    'active': isFilterVisible,
+    'red': isFiltered()
+    }"
+    data-tooltip="Open filter"
+    data-position="left"
+    #tooltip
+  >
+    <i class="material-icons">filter_list</i>
+  </button>
+</div>
+
+<app-history-filter
+  *ngIf="isFilterVisible"
+  (onFilter)="applyFilter($event)"
+></app-history-filter>
+
+<div *ngIf="!reloading; else reloadingBlock">
+  <div *ngIf="orders.length !== 0; else empty">
+    <!--sending data to variable "categoryId" to low level component-->
+    <app-history-list
+      *ngIf="orders?.length !== 0"
+      [orders]="orders"
+    >
+    </app-history-list>
+
+    <div
+      class="center mb2"
+      *ngIf="!noMoreOrders"
+    >
+      <button
+        (click)="loadMore()"
+        class="btn waves-effect grey darken-1 btn-small"
+        *ngIf="!loading; else loader"
+      >
+        Load more...
+      </button>
+      <ng-template #loader>
+        <app-loader></app-loader>
+      </ng-template>
+    </div>
+  </div>
+  <ng-template #empty>
+    <div class="center">
+      Orders not found!
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #reloadingBlock>
+  <app-loader></app-loader>
+</ng-template>

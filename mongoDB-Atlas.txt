@@ -1,0 +1,5 @@
+db name: project-mean-crm
+user: anderson4ik
+pass: z5Tl2lBIfOVbIPyr
+link to connect:
+mongodb+srv://anderson4ik:z5Tl2lBIfOVbIPyr@cluster0.sf84j.mongodb.net/project-mean-crm?retryWrites=true&w=majority
