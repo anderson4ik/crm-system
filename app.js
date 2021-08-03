@@ -44,13 +44,13 @@ app.use('/api/position', positionRoutes);
 // only for production assembly
 if(process.env.NODE_ENV === 'production') {
     // make folder client as static
-    app.use(express.static('client/dist/client'));
+    app.use(express.static('client/dist/crm-client'));
 
     // for all raw get requests server send index.html
     app.get('*', (req, res) => {
         res.sendFile(
             path.resolve(
-                __dirname, 'client', 'dist', 'client', 'index.html'
+                __dirname, 'client', 'dist', 'crm-client', 'index.html'
             )
         )
     });
