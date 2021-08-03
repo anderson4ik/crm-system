@@ -1,4 +1,5 @@
 /node_modules
 config/keys.dev.js
+mongoDB-Atlas.txt
 # IDEs and editors
 /.idea
